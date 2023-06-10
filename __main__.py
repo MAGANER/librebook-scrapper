@@ -61,13 +61,8 @@ if __name__ == "__main__":
     _, url, save_path = sys.argv
     page_urls = get_hrefs(get_root_url(url),get_pages_links(url))
 
-    pages = []
-    for url in page_urls:
-        pages.append(get_page(url))
-
-    contents = []
-    for page in pages:
-        contents.append(get_page_content(page))
+    pages = [get_page(url) for url in page_urls]
+    contents = [get_page_content(page) for page in pages]
 
     with open(save_path,"w") as f:
         for p in contents:
