@@ -47,7 +47,10 @@ def get_page_content(page):
             subcontent = get_page_content(el)
             content += subcontent + "\n"
         elif el.name == "p":
-            text = str(reduce(lambda a,b:a+b,el.contents))
+            #should be changed in future
+            #copy only elements, containing text of book
+            _content = [n for n in el.contents if str(type(n)) == "<class 'bs4.element.NavigableString'>"]
+            text = str(reduce(lambda a,b:a+b,_content))
             content += text + "\n"
     return content
         
